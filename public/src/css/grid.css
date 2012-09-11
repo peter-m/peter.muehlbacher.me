@@ -1,0 +1,179 @@
+/* =====================================================================================
+   TRULY RESPONSIVE GRID SYSTEM 
+   (only using percentages and em's - thus adapts to various devices, independant of their resolution, etc.)
+   =====================================================================================
+
+    Author: Peter Mühlbacher
+    Version: 1.0
+    URL: http://peter.muehlbacher.me/
+    ------------------------------------------------------------------------------------
+
+    CONTENTS - GRID.CSS
+    -----------------------------------------
+    0. GENERAL GRID STYLES
+    1. GOLDILOCK  (mobile first)
+    2. BABY BEAR  (30em and up)
+    3. MUMMY BEAR (45em and up)
+    4. DADDY BEAR (60em and up)
+    5. DEBUG STYLES
+
+    CONTENTS - APP.CSS 
+    (not needed for grid.css, but recommended to be used together with it as well as with normalize.css)
+    -----------------------------------------
+    0. CORE TYPOGRAPHY
+    1. LINKS
+    2. GLOBAL LAYOUT
+    3. CUSTOM TYPOGRAPHY
+    4. BROWSER AND NON-SEMANTIC STYLING
+    
+    =====================================================================================
+    USAGE
+    =====================================================================================
+    usage case: default
+    -------------------
+    div.row
+        div.[one|two|...|twelve].columns
+        div.[one|two|...|twelve].columns
+                     ...
+        div.[one|two|...|twelve].columns
+    
+    usage case:  nested
+    -------------------
+    div.row
+        div.[one|two|...|twelve].columns
+            div.row
+                div.[one|two|...|twelve].columns
+                div.[one|two|...|twelve].columns
+                             ...
+                div.[one|two|...|twelve].columns
+        div.[one|two|...|twelve].columns
+
+*/
+
+/* 0. GENERAL GRID STYLES
+----------------------------------------------------------------------------------------*/
+/**
+ * 1. margins now don't have any effects on an element's width any more -> see Paul Irish's article on that topic
+ */
+* {
+    -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; /* 1 */
+}
+
+.columns {
+    float: left;
+    min-height: 1px;
+    padding: 0 1em;
+    position: relative;
+}
+
+/**
+ * 1. overwrite the media-query added styles for nested rows (they are only thought for top level .row's)
+ *    as we want them to fill out all the space available by default again
+ *    (we only overwrote this behaviour as we are not using a .container element or the like)
+ * 2. don't let nested rows appear "more down"
+ */
+.row .row {
+    width:auto;      /* 1 */
+    max-width: none; /* 1 */
+    padding-top: 0;  /* 2 */
+}
+
+/**
+ * 1. reset the left padding for the first column that is within a nested row (otherwise the paddings would stack up)
+ * 2. reset the right padding for the last column that is within a nested row (same here)
+ */
+.row .row .columns:first-child {
+    padding-left: 0;  /* 1 */
+}
+.row .row .columns:last-child {
+    padding-right: 0; /* 2 */
+}
+
+/* Nicolas Gallagher's micro clearfix */
+.row { *zoom: 1; }
+.row:before, .row:after { content: ""; display: table; }
+.row:after { clear: both; }
+/*------------------------------------*/
+
+/* 1. GOLDILOCK
+----------------------------------------------------------------------------------------*/
+/**
+ * 1. smaller padding if screen width is limited
+ * 2. center it
+ * 3. enable relative positioning relative to the .row element
+ */
+.row {
+    padding: 0.809em;   /* 1 */
+    margin: auto;       /* 2 */
+    position: relative; /* 3 */
+}
+/* 2. BABY BEAR
+----------------------------------------------------------------------------------------*/
+@media screen and (min-width: 30em) {
+/**
+ * 1. if we have more space, spend some of it on padding
+ * 2. we are using a fixed width here because we want to center it correctly 
+      and we need the 30em to make the text readable -> no place for sidebars yet
+ */
+    .row {
+        padding: 1.618em; /* 1 */
+        width: 30em;      /* 2 */
+    }
+}
+/* 3. MUMMY BEAR 
+----------------------------------------------------------------------------------------*/
+@media screen and (min-width: 45em) {
+/**
+ * 1. by now we have got enough space to make the text readable _and_ add a sidebar/etc.
+ *     -> let width be fluid again
+ * 2. if the screen is that big, we can apply the styles to organize content next to each other
+ *    however, if you need to create columns for smaller sizes, feel free to add 
+ *    something like .mobile-one { width: 25%; }, etc. to baby bear - don't be afraid,
+ *    it will be overwritten by those styles defined here when the width exceeds 45em (mobile first in it's beauty ;)
+ * 3. sadly we have to use one column_s_ here, as `.row .row .columns:first-child` wouldn't work otherwise
+ *    (any ideas how to circumvent this?)
+ */
+	.row {
+		width:auto; /* 1 */
+	}
+
+    /* 2 */
+    .one.columns    { width: 8.333%; } /* 3 */
+    .two.columns    { width: 16.667%; }
+    .three.columns  { width: 25%; }
+    .four.columns   { width: 33.333%; }
+    .five.columns   { width: 41.667%; }
+    .six.columns    { width: 50%; }
+    .seven.columns  { width: 58.333%; }
+    .eight.columns  { width: 66.667%; }
+    .nine.columns   { width: 75%; }
+    .ten.columns    { width: 83.333%; }
+    .eleven.columns { width: 91.667%; }
+    .twelve.columns { width: 100%; }
+}
+
+/* 4. DADDY BEAR
+----------------------------------------------------------------------------------------*/
+@media screen and (min-width: 60em) {
+/**
+ * 1. set a max width (for current devices (1em = 16px) this is our once beloved 960px, but it adapts ;)
+ */
+	.row {
+		max-width: 60em; /* 1 */
+	}
+}
+
+/* 5. DEBUG STYLES
+----------------------------------------------------------------------------------------*/
+.grid-debug .columns {
+    -webkit-transition-property: background-color;
+    -webkit-transition-duration: 0.35s;
+    -webkit-transition-timing-function: ease-in-out;
+    transition-property: background-color;
+    transition-duration: 0.35s;
+    transition-timing-function: ease-in-out;
+}
+
+.grid-debug .columns:hover {
+    background-color: rgba(0,0,0,.2);
+}

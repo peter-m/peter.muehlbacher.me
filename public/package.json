@@ -1,0 +1,21 @@
+{
+    "name": "peter-muehlbacher-website",
+    "description": "My personal website",
+    "version": "0.1.0",
+    "homepage": "http://peter.muehlbacher.me",
+    "author": {
+        "name": "Peter Mühlbacher",
+        "url": "http://peter.muehlbacher.me/"
+    },
+    "licenses": [
+        {
+            "type": "AGPL-3.0",
+            "url": "http://www.gnu.org/licenses/agpl.txt"
+        }
+    ],
+    "keywords": [
+        "website",
+        "personal",
+        "mühlbacher"
+    ]
+}

@@ -1,0 +1,173 @@
+  ///////////////
+ // VARIABLES //////////////////////////////////////////////////////////////////
+///////////////
+$main_color:           rgb(34,34,34);  // equals #222222
+$highlight_color:      rgb(0,174,239); // equals #00aeef
+$highlight_color_rgba: rgba(0,174,239,.2);
+
+$img_path: "../img/"; // define path to images
+$font_path: "../fonts/"; // define path to fonts
+
+$max-width:   30em;
+$margin-left: 2.5em; // used to indent blockquotes, etc.
+$ratio:       1.618em; // used for lineheight, margin-bottoms, etc.
+
+$prefixes: ("-webkit-","-moz-", "-o-", "");
+// used for single properties
+@mixin prefix($property, $value) { 
+    @each $prefix in $prefixes {
+        #{$prefix}#{$property}: $value;
+    }
+}
+
+
+/* 0. CORE TYPOGRAPHY
+----------------------------------------------------------------------------------------
+adapted from Design by Front - @designbyfront (http://www.goldilocksapproach.com) */
+body {
+    background: white;
+    font-family: "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    color: $main_color;
+    position: relative;
+    font-size: 1em;
+    line-height: $ratio;
+    -webkit-font-smoothing: antialiased;
+}
+
+/*
+ * headings are already dealt with in normalize.css - if you don't use it, uncomment this
+ * 
+ *  h1, h2, h3, h4, h5, h6 {
+ *      margin-bottom: 0.809em;
+ *      line-height: 1em;
+ *  }
+ */
+
+p, ul, ol, dl, blockquote {
+    font-size: 1em;
+    line-height: $ratio;
+    margin-bottom: $ratio; 
+    max-width: $max-width; /* Optimal width for long-form text */
+}
+
+blockquote {
+    margin: 1em $margin-left;
+    max-width: $max-width - $margin-left;
+}
+    
+ul { list-style-type: disc; margin-left: $ratio; }
+ol { list-style-type: decimal; margin-left: $ratio; }
+nav ul, nav ol { list-style: none; margin: 0; padding: 0;}
+
+/*
+ * this has already been done in normalize.css - if you don't use it, uncomment this
+ * b, strong { font-weight: bold; }
+ */
+i, em, blockquote { font-style: italic; }
+
+/**
+ * some selection styles
+ */
+::selection {
+    background: $highlight_color;
+    color: white;
+}
+::-moz-selection {
+    background: $highlight_color;
+    color: white;
+}
+img::selection {
+    background: transparent;
+}
+img::-moz-selection {
+    background: transparent;
+}
+body {
+    -webkit-tap-highlight-color: $highlight_color_rgba;
+}
+
+/* 1. LINKS
+----------------------------------------------------------------------------------------*/
+a { 
+    color: $highlight_color;
+    text-decoration: none;
+    line-height: inherit;
+}
+
+a:hover {
+    color: darken($highlight_color, 5);
+}
+
+a:focus {
+    color: $highlight_color;
+    outline: none;
+}
+
+/* 2. GLOBAL LAYOUT
+----------------------------------------------------------------------------------------*/
+body {
+    background: #F6F6F6 url(#{$img_path}base.png) repeat 0 0;
+//}
+//.container {
+    padding: 2em;
+    max-width: $max-width;
+    margin: auto;
+//    background: rgba(0,0,0,.01);
+}
+
+@media only screen and (min-width: 60em) {
+    html {
+        font-size: 110%; // zoom in when there's enough space
+    }
+}
+@media only screen and (max-width: 40em) {
+    html {
+        font-size: 80%; // zoom in when there's enough space
+    }
+}
+/* 3. CUSTOM TYPOGRAPHY
+----------------------------------------------------------------------------------------*/
+@font-face {
+    font-family: 'RobotoThin';
+    src: url('#{$font_path}roboto-thin-Roboto.eot');
+    src: url('#{$font_path}roboto-thin-Roboto.eot?#iefix') format('embedded-opentype'),
+         url('#{$font_path}roboto-thin-Roboto.woff') format('woff'),
+         url('#{$font_path}roboto-thin-Roboto.ttf') format('truetype'),
+         url('#{$font_path}roboto-thin-Roboto.svg#RobotoThin') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: "RobotoThin", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-size: 140%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    text-transform: uppercase;
+    color: $highlight_color;
+    line-height: 1;
+}
+
+.page-title {
+    border-bottom: .1em solid $highlight_color;
+}
+
+.navigation li {
+
+}
+
+.main-navigation li {
+    padding-left: 1em;
+    @include prefix(transition, #{"padding .2s ease"});
+
+    &:hover {
+        border-left: .1em solid $highlight_color;
+        padding-left: 1.2em;
+    }
+}
+/* 4. BROWSER AND NON-SEMANTIC STYLING
+----------------------------------------------------------------------------------------*/
+* {
+    @include prefix(box-sizing, border-box); /* 1 */
+}

@@ -1,0 +1,91 @@
+/* 0. CORE TYPOGRAPHY
+----------------------------------------------------------------------------------------
+taken from Design by Front - @designbyfront (http://www.goldilocksapproach.com) */
+body {
+    background: white;
+    font-family: "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    color: #222222;
+    position: relative;
+    font-size: 1em;
+    line-height: 1.618em;
+    -webkit-font-smoothing: antialiased;
+}
+
+/*
+ * headings are already dealt with in normalize.css - if you don't use it, uncomment this
+ * 
+ *  h1, h2, h3, h4, h5, h6 {
+ *      margin-bottom: 0.809em;
+ *      line-height: 1em;
+ *  }
+ */
+
+p, ul, ol, dl, blockquote {
+    font-size: 1em;
+    line-height: 1.618em;
+    margin-bottom: 1.618em; 
+    max-width: 30em; /* Optimal width for long-form text */
+}
+
+/**
+ * 1. original: "margin: 1em 40px;" set to 2.5em (40px/16px (base fontsize) = 2.5)
+ * 2. max-width for p, blockquote, etc. is 30em - as we add margin here, adjust max-width (30-2.5 = 27.5)
+ */
+blockquote {
+    margin: 1em 2.5em; /* 1 */
+    max-width: 27.5em; /* 2 */
+}
+    
+ul { list-style-type: disc; margin-left: 1.618em; }
+ol { list-style-type: decimal; margin-left: 1.618em; }
+nav ul, nav ol { list-style: none; margin: 0; padding: 0;}
+
+/*
+ * this has already been done in normalize.css - if you don't use it, uncomment this
+ * b, strong { font-weight: bold; }
+ */
+i, em { font-style: italic; }
+
+::selection {
+    background: red;
+    color: white;
+}
+::-moz-selection {
+    background: red;
+    color: white;
+}
+img::selection {
+    background: transparent;
+}
+img::-moz-selection {
+    background: transparent;
+}
+body {
+    -webkit-tap-highlight-color: rgba(255,0,0, 0.62);
+}
+
+/* 1. LINKS
+----------------------------------------------------------------------------------------*/
+a { 
+    color: #2ba6cb;
+    text-decoration: none;
+    line-height: inherit;
+}
+
+a:hover {
+    color: #2795b6;
+}
+
+a:focus {
+    color: #2ba6cb;
+    outline: none;
+}
+
+/* 2. GLOBAL LAYOUT
+----------------------------------------------------------------------------------------*/
+
+/* 3. CUSTOM TYPOGRAPHY
+----------------------------------------------------------------------------------------*/
+
+/* 4. BROWSER AND NON-SEMANTIC STYLING
+----------------------------------------------------------------------------------------*/

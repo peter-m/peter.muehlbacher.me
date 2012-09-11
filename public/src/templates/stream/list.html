@@ -1,0 +1,5 @@
+<ul>
+  <% _.each(entries, function(entries) { %>
+   <li><%= entries.get("title") %> - <%= entries.get("content") %></li> 
+  <% }); %>
+</ul>
